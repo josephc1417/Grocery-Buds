@@ -1,24 +1,23 @@
 import {useState} from 'react'
+import {toast } from "react-toastify";
+
+
 
 export const Form = ({addItem}) => {
 const [newItemName, setNewItemName] = useState('')  
+
 const handleSubmit = (e) => {
-  e.preventDefault();
-  
-//we want to create a conditional to make sure 
-//that there is an item to add before we invoke the 
-//addItem() function
-//! We can also set the input-value back to an empty string 
-
-  if(!newItemName) return;
-  addItem(newItemName);
-  setNewItemName('');
- 
-
-}
+e.preventDefault();
+if(!newItemName){
+        toast.error('Please provide a value');
+        return;
+    }
+        addItem(newItemName);
+        setNewItemName('');
+    } 
     return (
         <form onSubmit={handleSubmit}>
-            <h4>Grocery Buds</h4>
+            <h4>Grocery Bud</h4>
             <div className='form-control'>
                 <input 
                     style={{boxShadow:'1px solid black'}}
